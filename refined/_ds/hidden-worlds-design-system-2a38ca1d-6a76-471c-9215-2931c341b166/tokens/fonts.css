@@ -1,0 +1,11 @@
+/* ============================================================
+   Hidden Worlds — Fonts
+   Brand display & story type is a heavy literary serif (the
+   real wordmark is set in a licensed Tiempos/Canela-class face).
+   We approximate with Newsreader — a high-contrast literary
+   serif with optical sizing, true small-cap-friendly caps, and
+   characterful italics. Product/chat chrome uses a system sans.
+   Loaded from Google Fonts CDN.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500;1,6..72,600&display=swap');

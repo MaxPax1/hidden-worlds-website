@@ -1,44 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hidden Worlds — Homepage Drafts</title>
-<style>
-  html, body { margin: 0; height: 100%; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: #0A1F4B;
-    color: #FCFAF6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .wrap { text-align: center; padding: 40px; }
-  h1 { font-weight: 600; letter-spacing: 0.02em; margin-bottom: 8px; }
-  p { color: #B9C2D6; margin-bottom: 32px; }
-  .links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-  a.card {
-    display: block;
-    text-decoration: none;
-    color: #0A1F4B;
-    background: #C9A84C;
-    padding: 18px 32px;
-    border-radius: 12px;
-    font-weight: 600;
-    min-width: 160px;
-  }
-  a.card:hover { background: #E0C26A; }
-</style>
+<script src="./support.js"></script>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Hidden Worlds</h1>
-    <p>Homepage drafts</p>
-    <div class="links">
-      <a class="card" href="refined/">Refined</a>
-      <a class="card" href="journal/">Journal</a>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/hidden-worlds-design-system-2a38ca1d-6a76-471c-9215-2931c341b166/styles.css">
+<script src="_ds/hidden-worlds-design-system-2a38ca1d-6a76-471c-9215-2931c341b166/_ds_bundle.js"></script>
+<style>
+  html, body { margin: 0; }
+  body { background: #FCFAF6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  ::selection { background: #E8C66A; color: #101A2E; }
+  a { color: inherit; }
+  .hw-journey{ display: flex; align-items: flex-start; }
+  .hw-step{ flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+  .hw-connector{ flex: 0 0 38px; align-self: flex-start; height: 60px; display: flex; align-items: center; }
+  .hw-connector i{ display: block; width: 100%; border-top: 2px dotted rgba(200,148,59,0.55); position: relative; }
+  .hw-connector i::after{ content: ''; position: absolute; right: -1px; top: -5px; border-left: 7px solid rgba(200,148,59,0.72); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+  @media (max-width: 768px){
+    [style*="grid-template-columns"]{ grid-template-columns: 1fr !important; }
+    [style*="max-width: 1180px"]{ padding-left: 22px !important; padding-right: 22px !important; }
+    .m-stack{ flex-direction: column !important; }
+    .hw-journey{ flex-direction: column; align-items: flex-start; }
+    .hw-step{ flex: none; width: 100%; flex-direction: row; align-items: center; text-align: left; gap: 18px; }
+    .hw-connector{ flex: none; width: 60px; height: 26px; align-self: flex-start; justify-content: center; }
+    .hw-connector i{ width: 0; height: 100%; border-top: none; border-left: 2px dotted rgba(200,148,59,0.55); }
+    .hw-connector i::after{ right: auto; left: -6px; top: auto; bottom: -1px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid rgba(200,148,59,0.72); border-bottom: none; }
+  }
+</style>
+</helmet>
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #15233E; background: #FCFAF6;">
+
+  <!-- ░░░░ NAV ░░░░ -->
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(252,250,246,0.82); backdrop-filter: saturate(140%) blur(12px); -webkit-backdrop-filter: saturate(140%) blur(12px); border-bottom: 1px solid rgba(21,35,62,0.07);">
+    <nav style="max-width: 1180px; margin: 0 auto; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="#top" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="assets/hw-mark-ink.png" alt="Hidden Worlds" style="display: block; height: 30px; width: auto;" />
+      </a>
+      <a href="{{ waUrl }}" target="_blank" rel="noopener" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 13.5px; text-decoration: none; color: #101A2E; background: #C8943B; padding: 11px 18px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px;" style-hover="background: #D9AE54;"><svg viewBox="0 0 24 24" width="16" height="16" style="flex: none;" aria-hidden="true"><path fill="#101A2E" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.358.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.893a11.821 11.821 0 00-3.487-8.453z"/></svg>Start exploring</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ░░░░ 1 · HERO ░░░░ -->
+    <section data-screen-label="Hero" style="position: relative; overflow: hidden; min-height: 90vh; display: flex; align-items: center; justify-content: center; background: #101A2E;">
+      <div style="{{ heroBgStyle }}"></div>
+      <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(62% 54% at 50% 48%, rgba(8,15,32,0.66) 0%, rgba(8,15,32,0.34) 42%, rgba(8,15,32,0) 72%), linear-gradient(180deg, rgba(8,15,32,0.58), rgba(8,15,32,0.06) 26%, rgba(8,15,32,0.08) 54%, rgba(8,15,32,0.7));"></div>
+      <div style="position: relative; z-index: 2; text-align: center; padding: 132px 40px; max-width: 1040px;">
+        <h1 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(40px, 5.7vw, 80px); line-height: 1.04; letter-spacing: -0.022em; color: #FCF7EC; margin: 0 auto; max-width: 17ch; text-wrap: balance; text-shadow: 0 2px 36px rgba(0,0,0,0.5);">There&rsquo;s no wrong place. Only the wrong way to <span style="color: #E8C66A;">experience it</span>.</h1>
+        <p style="font-family: 'Newsreader', Georgia, serif; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.42; color: #FCF7EC; margin: 28px auto 0; max-width: 28ch; text-wrap: balance; text-shadow: 0 1px 22px rgba(0,0,0,0.55);">An AI trip companion that helps you live the place, not just see it.</p>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 40px;">
+          <x-import component-from-global-scope="HiddenWorldsDesignSystem_2a38ca.Button" variant="solid" size="lg" as="a" href="{{ waUrl }}" target="_blank" rel="noopener" hint-size="auto,52px"><svg viewBox="0 0 24 24" width="19" height="19" style="flex: none;" aria-hidden="true"><path fill="#101A2E" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.358.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.893a11.821 11.821 0 00-3.487-8.453z"/></svg><span>Start exploring</span></x-import>
+          <span style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 14.5px; color: rgba(252,247,236,0.72); letter-spacing: 0.01em;">Free. No app. No sign-up.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ 2 · DUBROVNIK — now live (news clipping) ░░░░ -->
+    <section data-screen-label="Dubrovnik now live" style="position: relative; overflow: hidden; background-color: #101A2E; background-image: radial-gradient(120% 90% at 18% -10%, rgba(52,70,122,0.38), rgba(16,26,46,0) 58%), radial-gradient(90% 80% at 90% 110%, rgba(12,19,32,0.6), rgba(16,26,46,0) 70%);">
+
+      <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: 104px 40px 84px; display: grid; grid-template-columns: 1fr minmax(360px, 470px); gap: 60px; align-items: center;">
+        <div>
+          <div style="display: inline-flex; align-items: center; gap: 9px; background: #C8943B; color: #101A2E; font-weight: 700; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 13px; border-radius: 999px;">New</div>
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.04; letter-spacing: -0.018em; color: #F4EFE2; margin: 20px 0 0; text-wrap: balance;">Hidden Worlds just landed in Dubrovnik.</h2>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 21px; line-height: 1.5; color: #A4B2CC; margin: 22px 0 0; max-width: 440px; text-wrap: pretty;">The first chapter is open. Discover the Dubrovnik the locals keep to themselves, and take a piece of it home.</p>
+          <a href="#story-cards" style="display: inline-flex; align-items: center; gap: 9px; margin-top: 30px; font-size: 14.5px; font-weight: 600; color: #E8C66A; text-decoration: none; letter-spacing: 0.02em;" style-hover="gap: 14px; color: #F2D98F;">See more <span style="font-size: 16px;">&rarr;</span></a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 22px; min-width: 0;">
+          <div style="display: flex; justify-content: center; align-items: center; min-width: 0;">
+            <img src="assets/card-front-boskovic.png" alt="Story Card front, Ru&#273;er Bo&#353;kovi&#263;" style="width: clamp(186px, 20vw, 248px); height: auto; border-radius: 14px; transform: rotate(-5deg); position: relative; z-index: 2; margin-right: -34px; box-shadow: 0 28px 56px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(232,198,106,0.32);" />
+            <img src="assets/card-back-boskovic.png" alt="Story Card back, Passport Entry" style="width: clamp(172px, 18.5vw, 230px); height: auto; border-radius: 14px; transform: rotate(6deg) translateY(16px); position: relative; z-index: 1; box-shadow: 0 24px 50px -22px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(232,198,106,0.22);" />
+          </div>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 13.5px; line-height: 1.5; color: #7E8DAB; margin: 0; text-align: center;">Season I &middot; 2026 &middot; Ru&#273;er Bo&#353;kovi&#263; &middot; Souvenir Card /1000</p>
+        </div>
+      </div>
+
+      <!-- partner credit strip -->
+      <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: 0 40px 40px;">
+        <div style="border-top: 1px solid rgba(232,198,106,0.16); padding-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 18px;">
+          <span style="text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; font-weight: 600; color: #6E7FA0;">In partnership with</span>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 28px;">
+            <img src="assets/logo-airport-white.png" alt="Zra&#269;na luka Ru&#273;er Bo&#353;kovi&#263;, Dubrovnik Airport" style="height: 42px; width: auto; opacity: 0.92;" />
+            <span style="width: 4px; height: 4px; border-radius: 50%; background: rgba(232,198,106,0.5);"></span>
+            <img src="assets/logo-grad-white.png" alt="Grad Dubrovnik, City of Dubrovnik" style="height: 25px; width: auto; opacity: 0.92;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ 3 · THE PROBLEM — our story (two-column) ░░░░ -->
+    <section data-screen-label="The problem" style="background: #FBF8F1;">
+      <div class="m-stack" style="max-width: 1180px; margin: 0 auto; padding: 120px 40px 124px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 460px); gap: 72px; align-items: center;">
+        <div style="max-width: 580px;">
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(34px, 4.8vw, 56px); line-height: 1.06; letter-spacing: -0.02em; color: #15233E; margin: 0; text-wrap: balance;">Most people only ever see the surface.</h2>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 20.5px; line-height: 1.62; color: #4C5A74; margin: 30px 0 0; text-wrap: pretty;">Every place has people who chose to live there, and love it more than anywhere else in the world.</p>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 20.5px; line-height: 1.62; color: #4C5A74; margin: 24px 0 0; text-wrap: pretty;">When travelers come home disappointed, it&rsquo;s almost never because of the place itself. It&rsquo;s because they failed to find the thing that made those people want to stay.</p>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 20.5px; line-height: 1.62; color: #15233E; font-weight: 700; margin: 24px 0 0; text-wrap: pretty;">That&rsquo;s what we help you reach, so you come home sure it was worth it, not wondering what you missed.</p>
+          <div style="margin-top: 36px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
+            <x-import component-from-global-scope="HiddenWorldsDesignSystem_2a38ca.Button" variant="solid" size="lg" as="a" href="{{ waUrl }}" target="_blank" rel="noopener" hint-size="auto,52px"><svg viewBox="0 0 24 24" width="19" height="19" style="flex: none;" aria-hidden="true"><path fill="#101A2E" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.358.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.893a11.821 11.821 0 00-3.487-8.453z"/></svg><span>Start exploring</span></x-import>
+            <span style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 14.5px; color: #7A87A0; letter-spacing: 0.01em;">Free. No app. No sign-up.</span>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <img src="assets/section3-friends-v4.jpeg" alt="Friends gathered around a table in a neighborhood spot" style="width: 100%; max-width: 460px; aspect-ratio: 4/5; object-fit: cover; border-radius: 18px; box-shadow: 0 30px 64px -28px rgba(21,35,62,0.45), inset 0 0 0 1px rgba(21,35,62,0.06);" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ 4 · THE GUIDE — honesty chat demo ░░░░ -->
+    <section data-screen-label="The guide" style="background: #FFFFFF;">
+      <div class="m-stack" style="max-width: 1180px; margin: 0 auto; padding: 116px 40px 120px; display: grid; grid-template-columns: 1fr minmax(330px, 372px); gap: 80px; align-items: center;">
+        <div>
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(32px, 4.6vw, 56px); line-height: 1.04; letter-spacing: -0.02em; color: #15233E; margin: 0; text-wrap: balance;">Not a guidebook. Not a chatbot. Not a &euro;200 tour.</h2>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 21px; line-height: 1.58; color: #4C5A74; margin: 28px 0 0; max-width: 48ch; text-wrap: pretty;">The difference between seeing a place and coming home like you actually lived there. Local stories and honest tips, in your pocket the whole trip, free.</p>
+        </div>
+
+        <!-- WhatsApp chat mock -->
+        <div style="display: flex; justify-content: center;">
+          <div style="width: min(330px, 100%); background: #EFEAE2; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 70px -26px rgba(21,35,62,0.5), inset 0 0 0 1px rgba(21,35,62,0.07); display: flex; flex-direction: column;">
+            <div style="flex: none; display: flex; align-items: center; gap: 10px; background: #008069; padding: 14px;">
+              <span style="width: 36px; height: 36px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: 'Newsreader', Georgia, serif; font-weight: 700; font-size: 12px; color: #101A2E; background: linear-gradient(168deg,#F2D98F,#C8943B);">HW</span>
+              <div style="line-height: 1.2; flex: 1; min-width: 0;">
+                <div style="font-size: 15px; font-weight: 600; color: #fff;">Hidden Worlds</div>
+                <div style="font-size: 11.5px; color: rgba(255,255,255,0.8);">online</div>
+              </div>
+              <span style="display: flex; gap: 16px; color: rgba(255,255,255,0.9); font-size: 15px;">&#128249; &#128222;</span>
+            </div>
+            <div style="padding: 16px 12px 12px; display: flex; flex-direction: column; gap: 8px; background-color: #EFEAE2; background-image: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.45), rgba(239,234,226,0) 50%);">
+              <div style="align-self: flex-end; margin-left: auto; max-width: 84%; background: #D9FDD3; color: #111B21; border-radius: 8px; border-top-right-radius: 2px; padding: 7px 11px 6px; font-size: 14px; line-height: 1.42; box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);">
+                <span>First morning in Rome. Just took a photo of that huge white marble monument, it&rsquo;s amazing.</span>
+                <span style="float: right; margin: 6px 0 -2px 10px; font-size: 10.5px; color: #667781;">09:12 <span style="color: #53BDEB; letter-spacing: -2px;">&#10003;&#10003;</span></span>
+              </div>
+              <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; color: #111B21; border-radius: 8px; border-top-left-radius: 2px; padding: 7px 11px 6px; font-size: 14px; line-height: 1.42; box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);">
+                <span>The Vittoriano. Great shot, it dominates the whole skyline. Funny thing is, it&rsquo;s barely a hundred years old, so there&rsquo;s not much story under it.</span>
+                <span style="float: right; margin: 6px 0 -2px 10px; font-size: 10.5px; color: #667781;">09:12</span>
+              </div>
+              <div style="align-self: flex-start; max-width: 90%; background: #FFFFFF; color: #111B21; border-radius: 8px; border-top-left-radius: 2px; padding: 7px 11px 6px; font-size: 14px; line-height: 1.42; box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);">
+                <span>While you&rsquo;re right there, walk down to the Roman Forum. Less grand, half in ruins, but this is where Rome actually ran the world for a thousand years. Go early before the crowds, stand in the middle of it, and that&rsquo;s the one you&rsquo;ll still be thinking about on the flight home.</span>
+                <span style="float: right; margin: 6px 0 -2px 10px; font-size: 10.5px; color: #667781;">09:13</span>
+              </div>
+              <div style="align-self: flex-end; margin-left: auto; max-width: 84%; background: #D9FDD3; color: #111B21; border-radius: 8px; border-top-right-radius: 2px; padding: 7px 11px 6px; font-size: 14px; line-height: 1.42; box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);">
+                <span>Changing our plans then. Thanks.</span>
+                <span style="float: right; margin: 6px 0 -2px 10px; font-size: 10.5px; color: #667781;">09:14 <span style="color: #53BDEB; letter-spacing: -2px;">&#10003;&#10003;</span></span>
+              </div>
+              <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; color: #111B21; border-radius: 8px; border-top-left-radius: 2px; padding: 7px 11px 6px; font-size: 14px; line-height: 1.42; box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);">
+                <span>Anytime. Message me when you&rsquo;re standing in it.</span>
+                <span style="float: right; margin: 6px 0 -2px 10px; font-size: 10.5px; color: #667781;">09:14</span>
+              </div>
+            </div>
+            <div style="flex: none; display: flex; align-items: center; gap: 8px; padding: 8px 10px 10px; background: #EFEAE2;">
+              <div style="flex: 1; min-width: 0; background: #fff; border-radius: 18px; padding: 8px 12px; font-size: 13px; color: #8696A0; display: flex; align-items: center; gap: 8px; box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);">
+                <span style="font-size: 15px;">&#128512;</span>
+                <span style="flex: 1;">Message</span>
+                <span style="font-size: 14px;">&#128206;</span>
+              </div>
+              <span style="width: 38px; height: 38px; border-radius: 50%; background: #008069; flex: none; display: grid; place-items: center; color: #fff; font-size: 15px;">&#127908;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ 5 · HOW IT WORKS — journey ░░░░ -->
+    <section data-screen-label="How it works" style="background: #FCFAF6; border-top: 1px solid rgba(21,35,62,0.06);">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 116px 40px 120px;">
+        <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.05; letter-spacing: -0.018em; color: #15233E; margin: 0 auto; max-width: 18ch; text-align: center; text-wrap: balance;">From the airport to the story you bring home.</h2>
+        <div class="hw-journey" style="margin-top: 68px;">
+
+          <div class="hw-step">
+            <span style="width: 60px; height: 60px; border-radius: 50%; flex: none; display: grid; place-items: center; background: radial-gradient(circle at 50% 32%, rgba(200,148,59,0.16), rgba(200,148,59,0.05)); box-shadow: inset 0 0 0 1px rgba(200,148,59,0.36);">
+              <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="#B7842A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3"/><path d="M16 4h3a1 1 0 0 1 1 1v3"/><path d="M20 16v3a1 1 0 0 1-1 1h-3"/><path d="M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M4 12h16"/></svg>
+            </span>
+            <div>
+              <div style="font-family: 'Newsreader', Georgia, serif; font-size: 21px; font-weight: 700; color: #15233E; line-height: 1.22;">Land and scan</div>
+              <p style="font-size: 15px; line-height: 1.5; color: #4C5A74; margin: 7px 0 0;">No app, no sign-up.</p>
+            </div>
+          </div>
+
+          <div class="hw-connector"><i></i></div>
+
+          <div class="hw-step">
+            <span style="width: 60px; height: 60px; border-radius: 50%; flex: none; display: grid; place-items: center; background: radial-gradient(circle at 50% 32%, rgba(200,148,59,0.16), rgba(200,148,59,0.05)); box-shadow: inset 0 0 0 1px rgba(200,148,59,0.36);">
+              <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="#B7842A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/></svg>
+            </span>
+            <div>
+              <div style="font-family: 'Newsreader', Georgia, serif; font-size: 21px; font-weight: 700; color: #15233E; line-height: 1.22;">Hunt the stories every morning</div>
+              <p style="font-size: 15px; line-height: 1.5; color: #4C5A74; margin: 7px 0 0;">Uncover a new layer of the city, in a few minutes.</p>
+            </div>
+          </div>
+
+          <div class="hw-connector"><i></i></div>
+
+          <div class="hw-step">
+            <span style="width: 60px; height: 60px; border-radius: 50%; flex: none; display: grid; place-items: center; background: radial-gradient(circle at 50% 32%, rgba(200,148,59,0.16), rgba(200,148,59,0.05)); box-shadow: inset 0 0 0 1px rgba(200,148,59,0.36);">
+              <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="#B7842A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.3A7.5 7.5 0 1 1 21 11.5z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+            </span>
+            <div>
+              <div style="font-family: 'Newsreader', Georgia, serif; font-size: 21px; font-weight: 700; color: #15233E; line-height: 1.22;">Explore with it all trip</div>
+              <p style="font-size: 15px; line-height: 1.5; color: #4C5A74; margin: 7px 0 0;">With you in real time, giving you tips and answers.</p>
+            </div>
+          </div>
+
+          <div class="hw-connector"><i></i></div>
+
+          <div class="hw-step">
+            <span style="width: 60px; height: 60px; border-radius: 50%; flex: none; display: grid; place-items: center; background: radial-gradient(circle at 50% 32%, rgba(200,148,59,0.16), rgba(200,148,59,0.05)); box-shadow: inset 0 0 0 1px rgba(200,148,59,0.36);">
+              <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="#B7842A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2.5"/><circle cx="12" cy="10" r="2.2"/><path d="M8 16.6c0-2.2 1.8-3.6 4-3.6s4 1.4 4 3.6"/></svg>
+            </span>
+            <div>
+              <div style="font-family: 'Newsreader', Georgia, serif; font-size: 21px; font-weight: 700; color: #15233E; line-height: 1.22;">Take your stories home</div>
+              <p style="font-size: 15px; line-height: 1.5; color: #4C5A74; margin: 7px 0 0;">Save your memories on your unique souvenir card.</p>
+            </div>
+          </div>
+
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 64px;">
+          <x-import component-from-global-scope="HiddenWorldsDesignSystem_2a38ca.Button" variant="solid" size="lg" as="a" href="{{ waUrl }}" target="_blank" rel="noopener" hint-size="auto,52px"><svg viewBox="0 0 24 24" width="19" height="19" style="flex: none;" aria-hidden="true"><path fill="#101A2E" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.358.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.893a11.821 11.821 0 00-3.487-8.453z"/></svg><span>Start exploring</span></x-import>
+          <span style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 14.5px; color: #7A87A0; letter-spacing: 0.01em;">Free. No app. No sign-up.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ 6 · THE CARD — collection (two-column) ░░░░ -->
+    <section id="story-cards" data-screen-label="The card" style="position: relative; overflow: hidden; background-color: #101A2E; background-image: radial-gradient(110% 80% at 50% -10%, rgba(52,70,122,0.32), rgba(16,26,46,0) 60%);">
+      <div class="m-stack" style="position: relative; max-width: 1180px; margin: 0 auto; padding: 116px 40px 124px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 560px); gap: 72px; align-items: center;">
+        <div style="max-width: 520px;">
+          <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.018em; color: #F4EFE2; margin: 0; text-wrap: balance;">Something to keep, and something to talk about.</h2>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 20px; line-height: 1.58; color: #A4B2CC; margin: 28px 0 0; text-wrap: pretty;">Each card is yours alone. The art and the story on the front, and a code on the back that opens everything you found on the trip, saved just for you.</p>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-size: 20px; line-height: 1.58; color: #A4B2CC; margin: 22px 0 0; text-wrap: pretty;">Collect one from every place you visit. They line your shelf, and they start the conversation every time someone asks where you&rsquo;ve been.</p>
+          <a href="{{ waUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; margin-top: 30px; font-size: 14.5px; font-weight: 600; color: #E8C66A; text-decoration: none; letter-spacing: 0.02em;" style-hover="gap: 14px; color: #F2D98F;">See more <span style="font-size: 16px;">&rarr;</span></a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; min-width: 0;">
+          <img src="assets/card-shelf-boskovic.png" alt="A Hidden Worlds Story Card displayed on a shelf between books" style="width: 100%; max-width: 560px; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; border-radius: 16px; box-shadow: 0 36px 72px -28px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(232,198,106,0.18);" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ 7 · FINAL CTA ░░░░ -->
+    <section data-screen-label="Final CTA" style="background: #FBF8F1; border-top: 1px solid rgba(21,35,62,0.07);">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 122px 40px 128px; text-align: center;">
+        <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 800; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.018em; color: #15233E; margin: 0 auto; max-width: 18ch; text-wrap: balance;">Every city has a hidden world. We uncover them one at a time.</h2>
+        <div style="font-family: 'Newsreader', Georgia, serif; font-weight: 500; font-size: 22px; color: #4C5A74; margin: 40px 0 0;">Which city should we open next?</div>
+        <div style="display: flex; justify-content: center; margin-top: 22px;">
+          <x-import component-from-global-scope="HiddenWorldsDesignSystem_2a38ca.Button" variant="solid" size="lg" as="a" href="{{ requestUrl }}" target="_blank" rel="noopener" hint-size="auto,52px"><svg viewBox="0 0 24 24" width="19" height="19" style="flex: none;" aria-hidden="true"><path fill="#101A2E" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.358.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.893a11.821 11.821 0 00-3.487-8.453z"/></svg><span>Suggest your destination</span></x-import>
+        </div>
+        <p style="font-size: 13.5px; line-height: 1.6; color: #8B97AC; margin: 18px 0 0;">We&rsquo;ll notify you when we add your city.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ░░░░ FOOTER ░░░░ -->
+  <footer style="background: #FBF8F1; border-top: 1px solid rgba(21,35,62,0.08);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <img src="assets/hw-mark-ink.png" alt="Hidden Worlds" style="display: block; height: 26px; width: auto; opacity: 0.85;" />
+      <div style="display: flex; align-items: center; gap: 22px; font-size: 13px; color: #7A87A0;">
+        <a href="#" style="text-decoration: none; color: #4C5A74;" style-hover="color: #15233E;">Privacy</a>
+        <a href="#" style="text-decoration: none; color: #4C5A74;" style-hover="color: #15233E;">Partners</a>
+        <span>&copy; 2026 Hidden Worlds</span>
+      </div>
     </div>
-  </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1180, &quot;height&quot;: 900}, &quot;whatsappUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://wa.me/385997890123&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;heroImage&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Old town · rooftops&quot;, &quot;Old town · harbor&quot;, &quot;Adriatic sunset&quot;, &quot;Celestial&quot;], &quot;default&quot;: &quot;Old town · rooftops&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { cardFlipped: false };
+
+  renderVals() {
+    const waUrl = this.props.whatsappUrl || 'https://wa.me/385997890123';
+    const heroMap = {
+      'Old town · rooftops': 'assets/hero-7-oldtown-rooftops.png',
+      'Old town · harbor': 'assets/hero-6-oldtown-harbor.png',
+      'Adriatic sunset': 'assets/hero-1-adriatic-sunset.png',
+      'Celestial': 'assets/hero-4-celestial.png',
+    };
+    const heroImg = heroMap[this.props.heroImage] || heroMap['Old town · rooftops'];
+    const heroBgStyle = { position: 'absolute', inset: 0, backgroundImage: `url('${heroImg}')`, backgroundSize: 'cover', backgroundPosition: 'center' };
+    const flipCard = () => this.setState(s => ({ cardFlipped: !s.cardFlipped }));
+    const cardInnerStyle = {
+      position: 'relative', width: '100%', aspectRatio: '63.5 / 88.9',
+      transformStyle: 'preserve-3d', transition: 'transform 0.7s cubic-bezier(0.65,0,0.35,1)',
+      cursor: 'pointer', transform: this.state.cardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+    };
+    const requestUrl = waUrl + (waUrl.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent('Which city should Hidden Worlds open next?');
+    return { waUrl, requestUrl, heroBgStyle, flipCard, cardInnerStyle };
+  }
+}
+</script>
 </body>
 </html>

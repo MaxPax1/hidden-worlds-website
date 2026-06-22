@@ -1,0 +1,74 @@
+/* ============================================================
+   Hidden Worlds — Typography tokens
+   ============================================================ */
+
+:root {
+  /* ---- Families ------------------------------------------ */
+  --font-display: 'Newsreader', 'Georgia', 'Times New Roman', serif; /* wordmark, titles, story */
+  --font-serif:   'Newsreader', 'Georgia', 'Times New Roman', serif; /* story & body prose */
+  --font-ui:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* product chrome */
+  --font-mono:    'SFMono-Regular', ui-monospace, 'Menlo', monospace; /* archive IDs, edition #s */
+
+  /* ---- Type scale (px) ----------------------------------- */
+  --text-3xs: 11px;
+  --text-2xs: 12px;
+  --text-xs:  13px;
+  --text-sm:  14px;
+  --text-base:16px;
+  --text-lg:  18px;
+  --text-xl:  20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 38px;
+  --text-5xl: 48px;
+  --text-6xl: 64px;
+  --text-7xl: 84px;
+  --text-8xl: 108px;
+
+  /* ---- Weights ------------------------------------------- */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-heavy:    800;
+
+  /* ---- Line heights -------------------------------------- */
+  --leading-none:    1;
+  --leading-tight:   1.06;  /* display headlines */
+  --leading-snug:    1.22;  /* titles, card hooks */
+  --leading-normal:  1.5;   /* UI text */
+  --leading-relaxed: 1.62;  /* story prose */
+
+  /* ---- Letter spacing ------------------------------------ */
+  --tracking-label:  0.22em;  /* SEASON I · 2026 small-caps labels */
+  --tracking-eyebrow:0.14em;
+  --tracking-wide:   0.04em;
+  --tracking-normal: 0;
+  --tracking-tight:  -0.012em; /* large display set tight */
+
+  /* ===== Semantic roles ================================== */
+  /* Wordmark / hero — heavy, tight, literary */
+  --type-wordmark-family: var(--font-display);
+  --type-wordmark-weight: var(--weight-heavy);
+
+  --type-display-size:   var(--text-6xl);
+  --type-display-weight: var(--weight-heavy);
+  --type-display-leading:var(--leading-tight);
+
+  --type-title-size:     var(--text-3xl);
+  --type-title-weight:   var(--weight-bold);
+
+  --type-hook-size:      var(--text-2xl);   /* card one-line hooks (italic) */
+  --type-hook-weight:    var(--weight-medium);
+
+  --type-label-size:     var(--text-xs);    /* tracked small-caps */
+  --type-label-tracking: var(--tracking-label);
+
+  --type-story-size:     var(--text-lg);    /* passport-entry prose */
+  --type-story-leading:  var(--leading-relaxed);
+
+  --type-body-size:      var(--text-base);
+  --type-body-leading:   var(--leading-normal);
+
+  --type-caption-size:   var(--text-xs);
+}

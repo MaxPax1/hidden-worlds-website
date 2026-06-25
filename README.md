@@ -11,14 +11,16 @@ repo root.
 - **Pages setting:** repo **Settings → Pages → Source: Deploy from branch →
   `main` / `/ (root)`**. (`.nojekyll` is included so the underscore-prefixed
   `_ds/` runtime is served.)
-- Files: `index.html` (`/`) and `story-card.html`. WhatsApp links resolve at
+- Files: `index.html` (`/`), `story-card.html`, and `terms-viewer.html`
+  (homepage with the Terms/Privacy modal already open — for deep-linking the
+  legal text from the WhatsApp onboarding message). WhatsApp links resolve at
   runtime from the design-tool `whatsappUrl` prop (defaults to the real number).
 
 ## `fastapi-build/` — the hosting build (hand this to the team)
 The page **prepared for the Hidden Worlds FastAPI/forge service** — `templates/`
 + `static/`, with the `{{ }}` tokens removed, asset paths rewired to `/static/`,
 and links pointing at routes. **See [`fastapi-build/INTEGRATION.md`](fastapi-build/INTEGRATION.md)**
-for install steps and the one route to add (`GET /story-card`).
+for install steps and the routes to add (`GET /story-card`, `GET /terms-viewer`).
 
 This is the version to deploy. The static site at the repo root is just the
 preview / source of the design.
@@ -28,7 +30,10 @@ preview / source of the design.
 ### Notes
 - WhatsApp number: `wa.me/385998427803` (search/replace to change).
 - Legal notice under every WhatsApp CTA opens a Terms/Privacy modal that iframes
-  `https://hiddenworlds.travel/terms`.
+  `https://hiddenworlds.travel/terms`. The `terms-viewer` page is the same modal
+  opened from first paint, so the WhatsApp message can deep-link into it:
+  point that link at `https://hiddenworlds.travel/terms-viewer`
+  (`?tc=privacy` opens to the Privacy section).
 - `fastapi-build/` is derived from the root static site (token removal, `/static/` paths,
   dead-code/asset pruning); regenerate it if `docs/` changes. The exact
   transforms are documented in `fastapi-build/INTEGRATION.md`.

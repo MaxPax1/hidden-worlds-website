@@ -311,51 +311,63 @@ class Component extends DCLogic {
 </script>
 
 <!-- ░░░░ TERMS & PRIVACY MODAL (navy/gold, iframes hiddenworlds.travel/terms) ░░░░ -->
-<div id="tc-overlay" aria-hidden="true" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(10,31,75,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 24px;">
+<div id="tc-overlay" aria-hidden="false" style="display: flex; position: fixed; inset: 0; z-index: 1000; background: rgba(10,31,75,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 24px;">
   <div role="dialog" aria-modal="true" aria-label="Terms of Service and Privacy Policy" style="position: relative; width: 100%; max-width: 760px; height: min(85vh, 820px); background: #FCFAF6; border-radius: 16px; overflow: hidden; box-shadow: 0 40px 90px -30px rgba(10,31,75,0.7); display: flex; flex-direction: column; border: 1px solid rgba(201,168,76,0.4);">
     <div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 20px; background: #0A1F4B; border-bottom: 2px solid #C9A84C;">
       <span style="font-family: 'Newsreader', Georgia, serif; font-weight: 700; font-size: 17px; color: #F4EFE2;">Terms &amp; Privacy</span>
       <button type="button" id="tc-close" aria-label="Close" style="appearance: none; border: none; cursor: pointer; width: 34px; height: 34px; border-radius: 50%; background: rgba(201,168,76,0.18); color: #F4EFE2; font-size: 20px; line-height: 1; display: grid; place-items: center;">&times;</button>
     </div>
-    <iframe id="tc-frame" title="Terms of Service and Privacy Policy" src="about:blank" style="flex: 1; width: 100%; border: 0; background: #fff;"></iframe>
+    <iframe id="tc-frame" title="Terms of Service and Privacy Policy" src="https://hiddenworlds.travel/terms#terms" style="flex: 1; width: 100%; border: 0; background: #fff;"></iframe>
   </div>
 </div>
 <script>
 (function () {
   var TERMS_URL = 'https://hiddenworlds.travel/terms';
   var lastFocus = null;
+  var userClosed = false;
   function el(id) { return document.getElementById(id); }
   function open(section) {
     var overlay = el('tc-overlay'), frame = el('tc-frame');
     if (!overlay || !frame) return;
-    frame.src = TERMS_URL + (section === 'privacy' ? '#privacy' : '#terms');
+    var want = TERMS_URL + (section === 'privacy' ? '#privacy' : '#terms');
+    if (frame.getAttribute('src') !== want) frame.setAttribute('src', want);
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    lastFocus = document.activeElement;
-    var btn = el('tc-close'); if (btn) btn.focus();
   }
   function close() {
     var overlay = el('tc-overlay'), frame = el('tc-frame');
     if (!overlay) return;
+    userClosed = true;
     overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     if (frame) frame.src = 'about:blank';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
-  window.openTC = open;
+  window.openTC = function (s) { userClosed = false; open(s); };
   window.closeTC = close;
   document.addEventListener('click', function (e) {
     if (!e.target || !e.target.closest) return;
     var trigger = e.target.closest('[data-tc]');
-    if (trigger) { e.preventDefault(); open(trigger.getAttribute('data-tc')); return; }
+    if (trigger) { e.preventDefault(); userClosed = false; open(trigger.getAttribute('data-tc')); return; }
     if (e.target === el('tc-overlay')) { close(); return; }
     if (e.target.closest('#tc-close')) { close(); return; }
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' || e.keyCode === 27) close();
   });
+  // ── terms-viewer page: the modal is baked open in the HTML and we keep it open
+  // through the client-side render cycle, so an outside link (the WhatsApp
+  // message) lands on the live homepage with the legal text already open over it.
+  // The visitor can still close it to explore the site behind; once closed it
+  // stays closed. ?tc=privacy opens straight to the privacy section.
+  var section = (new URLSearchParams(location.search).get('tc') === 'privacy') ? 'privacy' : 'terms';
+  function ensureOpen() { if (!userClosed) open(section); }
+  ensureOpen();
+  document.addEventListener('DOMContentLoaded', ensureOpen);
+  window.addEventListener('load', ensureOpen);
+  var ticks = 0, iv = setInterval(function () { ensureOpen(); if (++ticks > 15) clearInterval(iv); }, 200);
 })();
 </script>
 <!-- ░░░░ WHATSAPP CONFIRM INTERSTITIAL (consent step before opening WhatsApp) ░░░░ -->

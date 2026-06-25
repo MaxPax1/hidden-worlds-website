@@ -348,20 +348,6 @@ class Component extends DCLogic {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' || e.keyCode === 27) close();
   });
-  // Auto-open from URL so an outside link (e.g. the WhatsApp message) can land
-  // straight on the homepage with the legal modal already open over it:
-  //   hiddenworlds.travel/?tc=terms   ·   hiddenworlds.travel/?tc=privacy
-  function autoOpen() {
-    try {
-      var tc = new URLSearchParams(window.location.search).get('tc');
-      if (tc === 'terms' || tc === 'privacy') open(tc);
-    } catch (e) {}
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', autoOpen);
-  } else {
-    autoOpen();
-  }
 })();
 </script>
 <!-- ░░░░ WHATSAPP CONFIRM INTERSTITIAL (consent step before opening WhatsApp) ░░░░ -->
